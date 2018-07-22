@@ -19,6 +19,8 @@
   </dependency>
   </dependencies>
   
+  <!-- we can change java version according to our requirement using 
+  properties -->
   <properties>
     <java.version>1.8</java.version>
   </properties>
