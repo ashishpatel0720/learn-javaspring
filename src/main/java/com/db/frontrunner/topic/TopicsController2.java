@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class TopicsController {
+public class TopicsController2 {
 
     /*
     we have to tell spring that this thing need to get
@@ -18,7 +18,7 @@ public class TopicsController {
     //now only one instance of TopicService will be shared everywhere
 
 
-    @RequestMapping("/topics")
+    @RequestMapping("/topics2")
     public List<Topic> getTopics(){
             return this.ts.getAllTopics();
         }
