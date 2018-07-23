@@ -2,6 +2,7 @@ package com.db.frontrunner.topic;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,14 +11,10 @@ import java.util.List;
 @Service
 public class TopicService {
 
-    private List<Topic>topics=Arrays.asList(
-            new Topic(),
-            new Topic(),
-            new Topic(),
-            new Topic(),
+    private List<Topic>topics=new ArrayList<>(Arrays.asList(
             new Topic(),
             new Topic()
-    );
+            ));
 
 
     public List<Topic> getAllTopics()
@@ -33,5 +30,14 @@ public class TopicService {
             }
         }
         return new Topic("not found","404 ERROR");
+    }
+
+    public Topic addTopic(Topic topic) {
+
+        this.topics.add(topic);
+
+        return topic;
+
+
     }
 }

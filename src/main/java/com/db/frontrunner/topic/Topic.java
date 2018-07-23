@@ -33,6 +33,15 @@ public class Topic {
 
     }
 
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "id='" + id + '\'' +
+                ", desc='" + desc + '\'' +
+                ", title='" + title + '\'' +
+                '}';
+    }
+
     public void setDesc(String desc) {
         this.desc = desc;
     }
