@@ -3,7 +3,7 @@ package com.db.frontrunner.topic;
 public class Topic {
 
     static int idGenerator;
-    int id;
+    String id;
     String desc;
     String title;
 
@@ -13,17 +13,17 @@ public class Topic {
     }
 
     public Topic(String desc, String title) {
-        this.id = ++idGenerator;
+        this.id = "t"+(++idGenerator);
         this.desc = desc;
         this.title = title;
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -24,4 +24,14 @@ public class TopicService {
     {
         return this.topics;
     }
+
+
+    public Topic getTopic(String id) {
+        for(Topic t:topics){
+            if(t.getId().equals(id)){
+                return t;
+            }
+        }
+        return new Topic("not found","404 ERROR");
+    }
 }
