@@ -22,7 +22,8 @@ public class TopicService {
 
     public List<Topic> getAllTopics()
     {
-        return this.topics;
+        if(this.topics.size()!=0)return this.topics;
+        else return null;
     }
 
 
@@ -47,7 +48,7 @@ public class TopicService {
             Topic temp=topics.get(i);
 
             if(temp.getId().equals(topic.id) &&  id.equals(topic.id)){
-             //id which is passed through url and of topic which is passed should be same.
+                //id which is passed through url and of topic which is passed should be same.
                 topics.set(i,topic);
                 return topics.get(i);
             }
@@ -55,6 +56,17 @@ public class TopicService {
 
         return new Response(1,"not found","Topic not for editing found");
 
+
+    }
+
+    public Object deleteTopic(String id) {
+        try{
+            topics.removeIf(t->t.getId().equals(id));
+            return "Topic with Id:"+id+ " Deleted";
+
+        }catch(Exception e){
+            return e;
+        }
 
     }
 }
