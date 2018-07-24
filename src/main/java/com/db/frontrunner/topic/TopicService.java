@@ -15,7 +15,7 @@ public class TopicService {
     private List<Topic>topics=new ArrayList<>(Arrays.asList(
             new Topic(),
             new Topic()
-            ));
+    ));
     //we have to wrap that around ArrayList<> because that was immutable
     // so wehave to make it mutable.
 
@@ -39,6 +39,21 @@ public class TopicService {
 
         return this.topics.add(topic)? topic:
                 new Response(1,"Error","Can't add to the list");
+
+    }
+
+    public Object editTopic(Topic topic,String id) {
+        for(int i=0;i<topics.size();i++){
+            Topic temp=topics.get(i);
+            if(temp.getId().equals(topic.id) &&  id.equals(topic.id)){
+                temp.desc=topic.desc;
+                temp.title=topic.title;
+                return temp;
+            }
+        }
+
+        return new Response(1,"not found","Topic not for editing found");
+
 
     }
 }

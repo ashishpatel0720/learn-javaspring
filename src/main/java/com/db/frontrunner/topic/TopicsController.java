@@ -47,7 +47,7 @@ public class TopicsController {
     public Response fallBack(){
         return
                 new Response(501,"Not Implemented",
-                        "this path is not avaialable");
+                        " hih this path is  not available");
     }
 
     //POST Requests
@@ -70,4 +70,10 @@ public class TopicsController {
         return topicService.addTopic(topic);
     }
 
+    @RequestMapping(value ="/topics/{id}",method = RequestMethod.PATCH)
+    public Object editTopic(@RequestBody Topic topic, @PathVariable String id){
+        return topicService.editTopic(topic,id);
+    }
+
 }
+
