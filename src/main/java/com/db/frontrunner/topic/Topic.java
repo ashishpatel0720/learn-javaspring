@@ -2,6 +2,9 @@ package com.db.frontrunner.topic;
 
 public class Topic {
 
+    /*
+      the model must be a javabean to enable conversion of object to JSON spring.
+     */
     static int idGenerator;
     String id;
     String desc;

@@ -1,5 +1,6 @@
 package com.db.frontrunner.topic;
 
+import com.db.frontrunner.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +22,19 @@ public class TopicsController {
     @RequestMapping(value="/topics", method=RequestMethod.GET)
     //if we haven't given 'method', it will handle all type of requests
     public List<Topic> getTopics(){
-        return this.topicService.getAllTopics();
+        try{
+            return this.topicService.getAllTopics();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+
+        }
+        return null;
     }
 
 
     @RequestMapping(value = "/topics/{id}",method = RequestMethod.GET)
-    public Topic getTopic(@PathVariable String id){
+    public Object getTopic(@PathVariable String id){
         //we have to tell spring that {id} coming is being passed as argument
         // OR    public Topic getTopic(@PathVariable("id") String id){
         //  if both names are not same
@@ -36,8 +44,10 @@ public class TopicsController {
 
 
     @RequestMapping(value = "*",method = RequestMethod.GET)
-    public String fallBack(){
-        return "Fallback method";
+    public Response fallBack(){
+        return
+                new Response(501,"Not Implemented",
+                        "this path is not avaialable");
     }
 
     //POST Requests
@@ -56,8 +66,7 @@ public class TopicsController {
     @RequestMapping(value = "/topics",method = RequestMethod.POST)
     //we have to tell java that 'request body' needed to be converted into Topic
     //object using dependency injection, for this we use @RequestBody
-    public Topic addTopic(@RequestBody Topic topic){
-        System.out.println(topic);
+    public Object addTopic(@RequestBody Topic topic){
         return topicService.addTopic(topic);
     }
 

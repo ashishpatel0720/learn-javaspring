@@ -1,5 +1,6 @@
 package com.db.frontrunner.topic;
 
+import com.db.frontrunner.response.Response;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class TopicService {
             new Topic(),
             new Topic()
             ));
+    //we have to wrap that around ArrayList<> because that was immutable
+    // so wehave to make it mutable.
 
 
     public List<Topic> getAllTopics()
@@ -23,21 +26,19 @@ public class TopicService {
     }
 
 
-    public Topic getTopic(String id) {
+    public Object getTopic(String id) {
         for(Topic t:topics){
             if(t.getId().equals(id)){
                 return t;
             }
         }
-        return new Topic("not found","404 ERROR");
+        return new Response(404,"not found","Topic is not found");
     }
 
-    public Topic addTopic(Topic topic) {
+    public Object addTopic(Topic topic) {
 
-        this.topics.add(topic);
-
-        return topic;
-
+        return this.topics.add(topic)? topic:
+                new Response(1,"Error","Can't add to the list");
 
     }
 }
