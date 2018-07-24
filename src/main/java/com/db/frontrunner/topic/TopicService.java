@@ -45,10 +45,11 @@ public class TopicService {
     public Object editTopic(Topic topic,String id) {
         for(int i=0;i<topics.size();i++){
             Topic temp=topics.get(i);
+
             if(temp.getId().equals(topic.id) &&  id.equals(topic.id)){
-                temp.desc=topic.desc;
-                temp.title=topic.title;
-                return temp;
+             //id which is passed through url and of topic which is passed should be same.
+                topics.set(i,topic);
+                return topics.get(i);
             }
         }
 
